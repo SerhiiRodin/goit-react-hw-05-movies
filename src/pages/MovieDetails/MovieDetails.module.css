@@ -1,0 +1,20 @@
+.movieInfo {
+    display: flex;
+}
+
+.posterWrapper {
+  width: 350px;
+  height: 500px;
+  border: 1px solid black;
+}
+
+.posterWrapper > img {
+  display: block;
+  height: 100%;
+
+  width: 100%;
+  object-fit: cover;
+}
+
+.infoWrapper {
+}
