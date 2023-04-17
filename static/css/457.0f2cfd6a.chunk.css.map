@@ -1,0 +1,1 @@
+{"version":3,"file":"static/css/457.0f2cfd6a.chunk.css","mappings":"AAKA,4CAJE,cAAe,CACf,eAQF,CALA,qBACE,aAAc,CAGd,WACF","sources":["components/Reviews/Reviews.module.css"],"sourcesContent":[".author {\n  font-size: 20px;\n  font-weight: 700;\n}\n\n.text {\n  display: block;\n  font-size: 20px;\n  font-weight: 700;\n  width: 400px;\n}\n"],"names":[],"sourceRoot":""}
