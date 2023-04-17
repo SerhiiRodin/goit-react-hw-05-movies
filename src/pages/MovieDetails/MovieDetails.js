@@ -24,7 +24,7 @@ const MovieDetails = () => {
 
   return (
     <>
-      <button type="button">Назад</button>
+      <button type="button" className={css.button}>Назад</button>
       {title && (
         <div className={css.movieInfo}>
           <div className={css.posterWrapper}>
@@ -45,7 +45,7 @@ const MovieDetails = () => {
           </div>
         </div>
       )}
-      <div>
+      <div className={css.additionInf}>
         <p>Additional information</p>
         <ul>
           <li>

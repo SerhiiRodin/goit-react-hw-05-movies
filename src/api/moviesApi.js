@@ -31,3 +31,9 @@ export const getReviewsMovie = movieId => {
 
   return res;
 };
+
+export const getSearchMovie = movie => {
+  const res = axios.get(`3/search/movie?&query=${movie}`);
+
+  return res;
+};
