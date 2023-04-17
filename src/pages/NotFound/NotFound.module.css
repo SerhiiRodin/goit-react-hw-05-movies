@@ -1,0 +1,8 @@
+.noFound {
+  display: block;
+  font-size: 27px;
+  font-weight: 700;
+  width: 300px;
+  margin: 50px auto;
+  text-align: center;
+}

@@ -20,4 +20,14 @@ export const getMovieDetails = movieId => {
   return res;
 };
 
+export const getCastMovie = movieId => {
+  const res = axios.get(`3/movie/${movieId}/credits?`);
 
+  return res;
+};
+
+export const getReviewsMovie = movieId => {
+  const res = axios.get(`3/movie/${movieId}/reviews?`);
+
+  return res;
+};
