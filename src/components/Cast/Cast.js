@@ -13,7 +13,7 @@ const Cast = () => {
 
   const { name, profile_path } = cast;
 
-//   console.log(cast);
+  //   console.log(cast);
 
   useEffect(() => {
     getCastMovie(movieId).then(({ data: { cast } }) => {
