@@ -11,9 +11,9 @@ const Cast = () => {
   const [cast, setCast] = useState({});
   const { movieId } = useParams('');
 
-  const { name, profile_path } = cast;
+  //   const { name, profile_path } = cast;
 
-  //   console.log(cast);
+  //   const location = useLocation();
 
   useEffect(() => {
     getCastMovie(movieId).then(({ data: { cast } }) => {

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { Loader } from 'components/Loader/Loader';
+import { Suspense, useEffect, useRef, useState } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from '../../api/moviesApi';
 import css from './MovieDetails.module.css';
@@ -14,6 +15,9 @@ const MovieDetails = () => {
   const location = useLocation();
   // console.log('details', location);
   // console.log('details-loc', location.state.from);
+  // Сохраняется location.state.from если перейти еще в грубь, можно в useRef.
+  // или прокидывать дальше state={{ from: location.state.from }}
+  const backLinkLocationRef = useRef(location.state?.from ?? '/');
 
   const { poster_path, title, genres, overview, release_date, vote_average } =
     movie;
@@ -28,7 +32,8 @@ const MovieDetails = () => {
 
   return (
     <>
-      <Link to={location.state?.from ?? "/"} className={css.button}>
+      <Link to={backLinkLocationRef.current} className={css.button}>
+        {/* <Link to={location.state.from} className={css.button}> */}
         Назад
       </Link>
       {title && (
@@ -56,13 +61,21 @@ const MovieDetails = () => {
         <ul>
           <li>
             <Link to="cast">Cast</Link>
+            {/* <Link to="cast" state={{ from: location.state.from }}>
+              Cast
+            </Link> */}
           </li>
           <li>
             <Link to="reviews">Reviews</Link>
+            {/* <Link to="reviews" state={{ from: location.state.from }}>
+              Reviews
+            </Link> */}
           </li>
         </ul>
       </div>
-      <Outlet />
+      <Suspense fallback={<Loader/>}>
+        <Outlet />
+      </Suspense>
     </>
   );
 };

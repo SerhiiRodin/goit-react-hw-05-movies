@@ -30,7 +30,7 @@ const Movies = () => {
         alert('Movies loading error.');
       }
     });
-  }, [inputValue]);
+  }, [inputValue, setSearchParams]);
 
   const onFormSubmit = event => {
     event.preventDefault();
@@ -39,7 +39,7 @@ const Movies = () => {
 
     if (value.trim() === '') {
       alert('Enter movie title.');
-      
+
       setSearchParams({});
       return;
     }

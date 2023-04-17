@@ -7,6 +7,8 @@ const Reviews = () => {
   const [reviews, setReviews] = useState({});
   const { movieId } = useParams('');
 
+  // const location = useLocation();
+
   useEffect(() => {
     getReviewsMovie(movieId).then(({ data: { results } }) => {
       // console.log(results);
@@ -23,7 +25,9 @@ const Reviews = () => {
             <p>{content}</p>
           </li>
         ))}
-      {reviews.length === 0 && <p className={css.text}>We don`t have any reviews fro this movie.</p>}
+      {reviews.length === 0 && (
+        <p className={css.text}>We don`t have any reviews fro this movie.</p>
+      )}
     </ul>
   );
 };
