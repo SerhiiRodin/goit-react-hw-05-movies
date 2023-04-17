@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Link, Outlet, useLocation, useParams } from 'react-router-dom';
 import { getMovieDetails } from '../../api/moviesApi';
 import css from './MovieDetails.module.css';
 
@@ -10,6 +10,10 @@ const defaultFoto =
 const MovieDetails = () => {
   const [movie, setMovie] = useState({});
   const { movieId } = useParams('');
+
+  const location = useLocation();
+  // console.log('details', location);
+  // console.log('details-loc', location.state.from);
 
   const { poster_path, title, genres, overview, release_date, vote_average } =
     movie;
@@ -24,7 +28,9 @@ const MovieDetails = () => {
 
   return (
     <>
-      <button type="button" className={css.button}>Назад</button>
+      <Link to={location.state?.from ?? "/"} className={css.button}>
+        Назад
+      </Link>
       {title && (
         <div className={css.movieInfo}>
           <div className={css.posterWrapper}>

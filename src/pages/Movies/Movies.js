@@ -1,14 +1,16 @@
 import { getSearchMovie } from 'api/moviesApi';
 import { useEffect, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 
 const Movies = () => {
-  const [inputValue, setInputValue] = useState('');
+  // const [inputValue, setInputValue] = useState('');
   const [movies, setMovies] = useState([]);
+  const [searchParams, setSearchParams] = useSearchParams();
+
+  const inputValue = searchParams.get('input' ?? '');
 
   const location = useLocation();
-
-  console.log(movies);
+  // console.log('Movies', location);
 
   useEffect(() => {
     if (!inputValue) return;
@@ -17,6 +19,10 @@ const Movies = () => {
       try {
         if (results.length === 0) {
           alert('nothing found');
+          setSearchParams({ input: '' });
+          //Если набрали плохой запрос, то убирается этот запрос из URL input="ыаысы"
+          setSearchParams({});
+          setMovies([]);
           return;
         }
         setMovies(results);
@@ -33,11 +39,16 @@ const Movies = () => {
 
     if (value.trim() === '') {
       alert('Enter movie title.');
+      
+      setSearchParams({});
       return;
     }
 
     // console.log(value);
-    setInputValue(value.trim());
+    // setInputValue(value.trim());
+
+    setSearchParams({ input: value.trim() });
+
     event.target.reset();
   };
 
@@ -57,7 +68,9 @@ const Movies = () => {
         <ul>
           {movies.map(movie => (
             <li key={movie.id}>
-              <Link to={`${movie.id}`}>{movie.title}</Link>
+              <Link to={`${movie.id}`} state={{ from: location }}>
+                {movie.title}
+              </Link>
             </li>
           ))}
         </ul>
